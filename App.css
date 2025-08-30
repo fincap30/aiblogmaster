@@ -1,0 +1,280 @@
+/* Base Styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 40% 96.1%;
+  --foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 47.4% 11.2%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --card: 222.2 47.4% 11.2%;
+  --card-foreground: 210 40% 96.1%;
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 210 40% 96.1%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 90% 50%;
+  --destructive-foreground: 210 40% 96.1%;
+  --ring: 217.2 91.2% 59.8%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 222.2 47.4% 11.2%;
+  --foreground: 210 40% 96.1%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --popover: 222.2 47.4% 11.2%;
+  --popover-foreground: 210 40% 96.1%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --card: 222.2 47.4% 11.2%;
+  --card-foreground: 210 40% 96.1%;
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 210 40% 96.1%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 96.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 96.1%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 96.1%;
+  --ring: 217.2 91.2% 59.8%;
+}
+
+@layer base {
+  * {
+    /* Removed @apply border-border; */
+  }
+  body {
+    /* Removed @apply bg-background text-foreground; */
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
+
+/* Custom styles for the landing page */
+.hero-section {
+  background: linear-gradient(to bottom right, #e0f2fe, #bbdefb);
+  padding: 80px 0;
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #1a202c;
+}
+
+.hero-section p {
+  font-size: 1.25rem;
+  color: #4a5568;
+}
+
+.features-section,
+.pricing-section,
+.testimonials-section,
+.cta-section {
+  padding: 60px 0;
+}
+
+.features-section h2,
+.pricing-section h2,
+.testimonials-section h2,
+.cta-section h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1a202c;
+  margin-bottom: 40px;
+}
+
+.features-section .card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+}
+
+.features-section .card h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2d3748;
+  margin-top: 20px;
+}
+
+.features-section .card p {
+  color: #4a5568;
+}
+
+.pricing-section .card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+}
+
+.pricing-section .card.popular {
+  border: 2px solid #3182ce;
+  box-shadow: 0 10px 15px rgba(49, 130, 206, 0.3);
+}
+
+.pricing-section .card h3 {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #2d3748;
+}
+
+.pricing-section .card .price {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #3182ce;
+}
+
+.pricing-section .card ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.pricing-section .card ul li {
+  margin-bottom: 10px;
+  color: #4a5568;
+}
+
+.testimonials-section .testimonial-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.testimonials-section .testimonial-card p {
+  font-style: italic;
+  color: #4a5568;
+}
+
+.testimonials-section .testimonial-card .author {
+  font-weight: bold;
+  color: #2d3748;
+  margin-top: 15px;
+}
+
+.cta-section {
+  background-color: #3182ce;
+  color: #ffffff;
+  text-align: center;
+}
+
+.cta-section h2 {
+  color: #ffffff;
+}
+
+.footer {
+  background-color: #1a202c;
+  color: #ffffff;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.footer a {
+  color: #63b3ed;
+  margin: 0 10px;
+}
+
+/* Client Dashboard Styles */
+.dashboard-header {
+  background-color: #f7fafc;
+  padding: 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.dashboard-stats .stat-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+}
+
+.dashboard-tabs .tab-button {
+  background-color: #edf2f7;
+  padding: 10px 20px;
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+}
+
+.dashboard-tabs .tab-button.active {
+  background-color: #ffffff;
+  border-top: 2px solid #3182ce;
+}
+
+/* Sample Blog Styles */
+.blog-post-container {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.blog-post-container h1,
+.blog-post-container h2,
+.blog-post-container h3 {
+  color: #2d3748;
+}
+
+.blog-post-container p {
+  color: #4a5568;
+}
+
+.blog-ad-unit {
+  background-color: #f7fafc;
+  border: 1px dashed #e2e8f0;
+  padding: 20px;
+  text-align: center;
+  color: #718096;
+}
+
+.blog-email-signup {
+  background-color: #ebf8ff;
+  border: 1px solid #bee3f8;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.blog-faq-section .faq-item {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 15px 0;
+}
+
+.blog-faq-section .faq-item h3 {
+  color: #3182ce;
+}
+
+.blog-comments-section .comment-card {
+  background-color: #f7fafc;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.blog-comments-section .comment-card .author {
+  font-weight: bold;
+  color: #2d3748;
+}
+
+.blog-comments-section .comment-card .date {
+  font-size: 0.875rem;
+  color: #718096;
+}
+
+.blog-comments-section .comment-card p {
+  color: #4a5568;
+}
+
+
