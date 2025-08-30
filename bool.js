@@ -2,20 +2,28 @@
 
 var Scalar = require('../../nodes/Scalar.js');
 
-const boolTag = {
-    identify: value => typeof value === 'boolean',
+function boolStringify({ value, source }, ctx) {
+    const boolObj = value ? trueTag : falseTag;
+    if (source && boolObj.test.test(source))
+        return source;
+    return value ? ctx.options.trueStr : ctx.options.falseStr;
+}
+const trueTag = {
+    identify: value => value === true,
     default: true,
     tag: 'tag:yaml.org,2002:bool',
-    test: /^(?:[Tt]rue|TRUE|[Ff]alse|FALSE)$/,
-    resolve: str => new Scalar.Scalar(str[0] === 't' || str[0] === 'T'),
-    stringify({ source, value }, ctx) {
-        if (source && boolTag.test.test(source)) {
-            const sv = source[0] === 't' || source[0] === 'T';
-            if (value === sv)
-                return source;
-        }
-        return value ? ctx.options.trueStr : ctx.options.falseStr;
-    }
+    test: /^(?:Y|y|[Yy]es|YES|[Tt]rue|TRUE|[Oo]n|ON)$/,
+    resolve: () => new Scalar.Scalar(true),
+    stringify: boolStringify
+};
+const falseTag = {
+    identify: value => value === false,
+    default: true,
+    tag: 'tag:yaml.org,2002:bool',
+    test: /^(?:N|n|[Nn]o|NO|[Ff]alse|FALSE|[Oo]ff|OFF)$/,
+    resolve: () => new Scalar.Scalar(false),
+    stringify: boolStringify
 };
 
-exports.boolTag = boolTag;
+exports.falseTag = falseTag;
+exports.trueTag = trueTag;

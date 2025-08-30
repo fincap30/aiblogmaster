@@ -8,7 +8,7 @@ const floatNaN = {
     default: true,
     tag: 'tag:yaml.org,2002:float',
     test: /^(?:[-+]?\.(?:inf|Inf|INF)|\.nan|\.NaN|\.NAN)$/,
-    resolve: str => str.slice(-3).toLowerCase() === 'nan'
+    resolve: (str) => str.slice(-3).toLowerCase() === 'nan'
         ? NaN
         : str[0] === '-'
             ? Number.NEGATIVE_INFINITY
@@ -20,8 +20,8 @@ const floatExp = {
     default: true,
     tag: 'tag:yaml.org,2002:float',
     format: 'EXP',
-    test: /^[-+]?(?:\.[0-9]+|[0-9]+(?:\.[0-9]*)?)[eE][-+]?[0-9]+$/,
-    resolve: str => parseFloat(str),
+    test: /^[-+]?(?:[0-9][0-9_]*)?(?:\.[0-9_]*)?[eE][-+]?[0-9]+$/,
+    resolve: (str) => parseFloat(str.replace(/_/g, '')),
     stringify(node) {
         const num = Number(node.value);
         return isFinite(num) ? num.toExponential() : stringifyNumber.stringifyNumber(node);
@@ -31,12 +31,15 @@ const float = {
     identify: value => typeof value === 'number',
     default: true,
     tag: 'tag:yaml.org,2002:float',
-    test: /^[-+]?(?:\.[0-9]+|[0-9]+\.[0-9]*)$/,
+    test: /^[-+]?(?:[0-9][0-9_]*)?\.[0-9_]*$/,
     resolve(str) {
-        const node = new Scalar.Scalar(parseFloat(str));
+        const node = new Scalar.Scalar(parseFloat(str.replace(/_/g, '')));
         const dot = str.indexOf('.');
-        if (dot !== -1 && str[str.length - 1] === '0')
-            node.minFractionDigits = str.length - dot - 1;
+        if (dot !== -1) {
+            const f = str.substring(dot + 1).replace(/_/g, '');
+            if (f[f.length - 1] === '0')
+                node.minFractionDigits = f.length;
+        }
         return node;
     },
     stringify: stringifyNumber.stringifyNumber
